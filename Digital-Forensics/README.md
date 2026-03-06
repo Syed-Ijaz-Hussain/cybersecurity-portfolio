@@ -1,131 +1,113 @@
-Disk Imaging Lab
-Overview
+# Digital Forensics
 
-The Disk Imaging Lab is designed to teach and demonstrate the process of creating forensic disk images and analyzing them in a controlled environment. Disk imaging is a critical step in digital forensics, allowing investigators to capture an exact bit-by-bit copy of storage media for examination without altering the original evidence.
+## Overview
 
-This lab covers:
+Digital Forensics is the process of collecting, preserving, analyzing, and presenting digital evidence from computers, networks, and other digital devices. It is widely used in cybercrime investigations, incident response, and legal proceedings.
 
-Creating disk images using dd and FTK Imager.
+This section of the repository contains practical labs and investigations related to **digital evidence acquisition and analysis**.
 
-Verifying disk integrity with hashing (MD5/SHA1/SHA256).
+---
 
-Mounting and analyzing images for evidence.
+## Objectives
 
-Documenting findings for forensic reporting.
+* Understand the principles of digital forensics
+* Learn how to collect and preserve digital evidence
+* Perform forensic imaging of storage devices
+* Analyze memory and network data
+* Document forensic findings in a professional manner
 
-Lab Objectives
+---
 
-Understand the importance of forensic disk imaging.
+## Labs Included
 
-Learn how to create and verify disk images.
+### 1. Disk Imaging Lab
 
-Perform basic analysis of disk images.
+This lab demonstrates how to create a forensic image of a storage device.
 
-Document evidence in a professional manner suitable for investigations.
+**Topics Covered**
 
-Tools Used
+* Disk imaging using the `dd` tool
+* Evidence integrity verification using hashing
+* Converting raw images to forensic formats
 
-Linux (Kali Linux / Ubuntu)
+**Tools Used**
 
-FTK Imager (Windows)
+* Kali Linux
+* dd command
+* SHA256 hashing
+* EWF tools
 
-Autopsy / Sleuth Kit
+---
 
-Hashing tools (md5sum, sha1sum, sha256sum)
+### 2. Memory Forensics
 
-Mounting tools (mount, ewfmount)
+This lab focuses on analyzing volatile memory (RAM) to detect suspicious activities.
 
-Commands & Steps
-1️⃣ Identify Target Drive
-lsblk
-fdisk -l
+**Topics Covered**
 
-Identify the device name (e.g., /dev/sdb) for the target disk.
+* Extracting running processes
+* Detecting hidden malware
+* Investigating memory artifacts
 
-2️⃣ Create Disk Image with dd
-sudo dd if=/dev/sdb of=/mnt/forensics/disk_image.dd bs=4M status=progress
+**Tools Used**
 
-if = input file (source drive)
+* Volatility Framework
+* Memory dump analysis
 
-of = output file (destination image)
+---
 
-bs = block size
+### 3. Network Forensics
 
-status=progress = shows real-time progress
+This lab focuses on analyzing network traffic to detect malicious activities.
 
-This creates a bit-for-bit copy of the disk.
+**Topics Covered**
 
-3️⃣ Verify Image Integrity
-md5sum /mnt/forensics/disk_image.dd
-sha256sum /mnt/forensics/disk_image.dd
+* Packet capture analysis
+* Suspicious traffic investigation
+* Data extraction from network packets
 
-Record these hash values to ensure the image is forensically sound.
+**Tools Used**
 
-4️⃣ Mount the Disk Image
-sudo mkdir /mnt/disk_image
-sudo mount -o loop,ro /mnt/forensics/disk_image.dd /mnt/disk_image
-ls -la /mnt/disk_image
+* Wireshark
+* Network packet analysis
 
-Mounting in read-only mode prevents accidental modification.
+---
 
-5️⃣ Analyze the Image
+## Digital Forensics Process
 
-Examine file structure and directories.
+1. Identification of digital evidence
+2. Evidence preservation
+3. Data acquisition (forensic imaging)
+4. Analysis and investigation
+5. Documentation and reporting
 
-Look for suspicious files (malware, hidden files, deleted files).
+---
 
-Use Autopsy or Sleuth Kit for deeper analysis:
+## Importance of Digital Forensics
 
-fls -r /mnt/forensics/disk_image.dd
-icat /mnt/forensics/disk_image.dd <inode>
-Investigation Steps
+Digital forensics helps in:
 
-Identify devices – Check connected drives and target disk.
+* Cybercrime investigation
+* Incident response
+* Data breach analysis
+* Legal evidence collection
+* Identifying attackers and attack methods
 
-Capture evidence – Create a disk image using dd or FTK Imager.
+---
 
-Verify evidence – Compute hash values to ensure integrity.
+## Learning Outcome
 
-Mount image safely – Use read-only mode to prevent alteration.
+After completing these labs, the student will be able to:
 
-Examine image – Search for hidden/deleted files and suspicious activity.
+* Acquire digital evidence properly
+* Maintain evidence integrity
+* Perform forensic analysis using professional tools
+* Document investigations professionally
 
-Document findings – Include screenshots, commands, and hashes.
+---
 
-Report – Prepare a forensic report summarizing the investigation.
+## Author
 
-Screenshots
-
-Include screenshots of each step:
-
-Disk identification with lsblk
-
-dd imaging in progress
-
-Hash verification outputs
-
-Mounted image structure
-
-Evidence extraction using Autopsy/Sleuth Kit
-
-Best Practices
-
-Always work on a copy, never the original disk.
-
-Use write blockers if possible.
-
-Document every command and observation.
-
-Maintain a chain of custody for legal admissibility.
-
-Validate your images using multiple hashing algorithms.
-
-References
-
-Carrier, B. File System Forensic Analysis, 2nd Edition.
-
-Luttgens, J., Pepe, M., Mandia, K. Incident Response & Computer Forensics.
-
-Autopsy User Guide: https://www.sleuthkit.org/autopsy/
-
-Kali Linux Documentation: https://www.kali.org/docs/
+Syed Ijaz Hussain
+BS Cyber Security
+Riphah International University
